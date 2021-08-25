@@ -1,0 +1,141 @@
+---
+title: "Module2- R Markdown Document 1"
+author: "Dominic Festa"
+date: "8/25/2021"
+output:
+  html_notebook: default
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r include=FALSE}
+# Set repo
+local({r <- getOption("repos")
+      r["CRAN"] <- "http://cran.rstudio.com/"
+      options(repos=r)})
+```
+```{r include=FALSE}
+# ipak function: install and load multiple R packages.
+# check to see if the packages are installed. Install them if the are not, then load them into the R session.
+
+ipak <- function(pkg){
+	new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
+	if (length(new.pkg))
+		install.packages(new.pkg, dependencies = TRUE)
+	sapply(pkg, require, character.only = TRUE)
+}
+
+# usage
+packages <- c("tidyr", "dplyr", "ggplot2", "knitr", "rmarkdown", "DBI", "tinytex", "devtools", "fancy_lists")
+ipak(packages)
+```
+
+# This is a level 1 header
+
+## This is a level 2 header
+
+### This is a level 3 header
+
+[Here is a link to google](www.google.com)
+
+**Here is a word in bold**
+
+*Here is a word in italics*
+
+Here is `inline code`
+
+Here is an example of a *boxed* R command:
+
+```
+2+2
+mean(c(1,2,3,4,5))
+```
+Here is an example of an **executed** R command:
+
+```{r}
+2+2
+mean(c(1,2,3,4,5))
+```
+
+Here is an example of an un-ordered list:
+
+* Breakfast
+  - food
+    + eggs
+    + toast
+    + bacon
+  - drink
+    + apple juice
+* Lunch
+  - taco
+* Dinner
+  - baked chicken
+  - broccoli
+  - rice
+
+Here is an example of an ordered list:
+
+1. Breakfast
+  a. food
+    i. eggs
+    ii. toast
+    iii. bacon
+  b. drink
+    i. apple juice
+2. Lunch
+  a. taco
+3. Dinner
+  a. baked chicken
+  b. broccoli
+  c. rice
+
+1. Dog
+    1. German Shepherd
+    2. Belgian Shepherd
+        1. Malinois
+        2. Groenendael
+        3. Tervuren
+2. Cat
+    a. Siberian
+    b. Siamese
+      i. Peruvian-Siamese
+      ii. Himalayan Siamese
+
+Here is an example of block quote:
+
+> This is a block quote. This
+> paragraph has two lines
+> 
+> 1. This is a list inside a block quote
+> 2. Second item.
+
+Here is an example of a nested block qupte:
+
+> This is a block quote. This
+> paragraph has two lines
+> 
+> > This text is nested
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
