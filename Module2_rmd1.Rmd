@@ -3,22 +3,20 @@ title: "Module2- R Markdown Document 1"
 author: "Dominic Festa"
 date: "8/25/2021"
 output:
-  html_notebook: default
-  html_document: default
-  pdf_document: default
   word_document: default
+  html_document: default
+  html_notebook: default
+  pdf_document: default
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=TRUE}
 knitr::opts_chunk$set(echo = TRUE)
-```
-```{r include=FALSE}
+
 # Set repo
 local({r <- getOption("repos")
       r["CRAN"] <- "http://cran.rstudio.com/"
       options(repos=r)})
-```
-```{r include=FALSE}
+
 # ipak function: install and load multiple R packages.
 # check to see if the packages are installed. Install them if the are not, then load them into the R session.
 
@@ -30,99 +28,96 @@ ipak <- function(pkg){
 }
 
 # usage
-packages <- c("tidyr", "dplyr", "ggplot2", "knitr", "rmarkdown", "DBI", "tinytex", "devtools", "fancy_lists")
+packages <- c("tidyr", "dplyr", "ggplot2", "knitr", "rmarkdown", "DBI", "tinytex", "devtools")
 ipak(packages)
 ```
 
 # This is a level 1 header
 
-## This is a level 2 header
+## R Markdown
 
 ### This is a level 3 header
 
-[Here is a link to google](www.google.com)
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
-**Here is a word in bold**
+Here is a link to [GOOGLE](https://www.google.com/)
 
-*Here is a word in italics*
+Here is a word in **bold** and another word in **bold**.
 
-Here is `inline code`
+Here is a word in *italics* and another word in *italics*.
 
-Here is an example of a *boxed* R command:
+When we compile our document, we are using the `rmarkdown` package.
 
-```
-2+2
-mean(c(1,2,3,4,5))
-```
-Here is an example of an **executed** R command:
+Here are some example R commands:
 
-```{r}
-2+2
-mean(c(1,2,3,4,5))
-```
+    2+2
+    mean(c(1,2,3,4,5))
 
-Here is an example of an un-ordered list:
+Here is an example of a non-numbered list:
 
-* Breakfast
-  - food
-    + eggs
-    + toast
-    + bacon
-  - drink
-    + apple juice
-* Lunch
-  - taco
-* Dinner
-  - baked chicken
-  - broccoli
-  - rice
+-   Breakfast
 
-Here is an example of an ordered list:
+    -   food
 
-1. Breakfast
-  a. food
-    i. eggs
-    ii. toast
-    iii. bacon
-  b. drink
-    i. apple juice
-2. Lunch
-  a. taco
-3. Dinner
-  a. baked chicken
-  b. broccoli
-  c. rice
+        -   eggs
+        -   toast
+        -   bacon
 
-1. Dog
-    1. German Shepherd
-    2. Belgian Shepherd
-        1. Malinois
-        2. Groenendael
-        3. Tervuren
-2. Cat
-    a. Siberian
-    b. Siamese
-      i. Peruvian-Siamese
-      ii. Himalayan Siamese
+    -   drink
 
-Here is an example of block quote:
+        -   apple juice
 
-> This is a block quote. This
-> paragraph has two lines
-> 
-> 1. This is a list inside a block quote
-> 2. Second item.
+-   Lunch
 
-Here is an example of a nested block qupte:
+    -   taco
 
-> This is a block quote. This
-> paragraph has two lines
-> 
+-   Dinner
+
+    -   baked chicken
+    -   broccoli
+    -   rice
+
+Here is an example of a numbered list:
+
+1.  Breakfast
+
+    a.  food
+
+        i.  eggs
+        ii. toast
+        iii. bacon
+
+    b.  drink
+
+        i.  apple juice
+
+2.  Lunch
+
+    a.  taco
+
+3.  Dinner
+
+    a.  baked chicken
+    b.  broccoli
+    c.  rice
+
+Here is an example of a blockquote:
+
+> This is a block quote. This paragraph has two lines.
+>
+> 1.  This is a list inside a block quote.
+> 2.  Second item.
+
+Here is an example of a nested blockquote:
+
+> This is a block quote. This paragraph has two lines.
+>
 > > This text is nested
 
-## R Markdown
+Here is an example of code in a blockquote:
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+>     2+2
+>     mean(c(1,2,3,4,5))
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
@@ -139,3 +134,18 @@ plot(pressure)
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r pressure2, fig.width=5, fig.height=5, echo=FALSE}
+plot(pressure)
+```
+
+## Insert Tables
+
+```{r}
+knitr::kable(head(cars),
+             caption = "Top 6 Rows of Cars Dataset")
+```
+
+## Insert Equation
+
+$$ Y = \beta_0 + \beta_1x $$

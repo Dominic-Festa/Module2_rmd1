@@ -219,126 +219,121 @@ pre code {
 
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
-<!-- rnb-text-begin -->
-<div id="this-is-a-level-1-header" class="section level1">
-<h1>This is a level 1 header</h1>
-<div id="this-is-a-level-2-header" class="section level2">
-<h2>This is a level 2 header</h2>
-<div id="this-is-a-level-3-header" class="section level3">
-<h3>This is a level 3 header</h3>
-<p><a href="www.google.com">Here is a link to google</a></p>
-<p><strong>Here is a word in bold</strong></p>
-<p><em>Here is a word in italics</em></p>
-<p>Here is <code>inline code</code></p>
-<p>Here is an example of a <em>boxed</em> R command:</p>
-<pre><code>2+2
-mean(c(1,2,3,4,5))</code></pre>
-<p>Here is an example of an <strong>executed</strong> R command:</p>
-<!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuMisyXG5gYGAifQ== -->
-<pre class="r"><code>2+2</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxua25pdHI6Om9wdHNfY2h1bmskc2V0KGVjaG8gPSBUUlVFKVxuXG4jIFNldCByZXBvXG5sb2NhbCh7ciA8LSBnZXRPcHRpb24oXCJyZXBvc1wiKVxuICAgICAgcltcIkNSQU5cIl0gPC0gXCJodHRwOi8vY3Jhbi5yc3R1ZGlvLmNvbS9cIlxuICAgICAgb3B0aW9ucyhyZXBvcz1yKX0pXG5cbiMgaXBhayBmdW5jdGlvbjogaW5zdGFsbCBhbmQgbG9hZCBtdWx0aXBsZSBSIHBhY2thZ2VzLlxuIyBjaGVjayB0byBzZWUgaWYgdGhlIHBhY2thZ2VzIGFyZSBpbnN0YWxsZWQuIEluc3RhbGwgdGhlbSBpZiB0aGUgYXJlIG5vdCwgdGhlbiBsb2FkIHRoZW0gaW50byB0aGUgUiBzZXNzaW9uLlxuXG5pcGFrIDwtIGZ1bmN0aW9uKHBrZyl7XG5cdG5ldy5wa2cgPC0gcGtnWyEocGtnICVpbiUgaW5zdGFsbGVkLnBhY2thZ2VzKClbLCBcIlBhY2thZ2VcIl0pXVxuXHRpZiAobGVuZ3RoKG5ldy5wa2cpKVxuXHRcdGluc3RhbGwucGFja2FnZXMobmV3LnBrZywgZGVwZW5kZW5jaWVzID0gVFJVRSlcblx0c2FwcGx5KHBrZywgcmVxdWlyZSwgY2hhcmFjdGVyLm9ubHkgPSBUUlVFKVxufVxuXG4jIHVzYWdlXG5wYWNrYWdlcyA8LSBjKFwidGlkeXJcIiwgXCJkcGx5clwiLCBcImdncGxvdDJcIiwgXCJrbml0clwiLCBcInJtYXJrZG93blwiLCBcIkRCSVwiLCBcInRpbnl0ZXhcIiwgXCJkZXZ0b29sc1wiKVxuaXBhayhwYWNrYWdlcylcbmBgYCJ9 -->
+<pre class="r"><code>knitr::opts_chunk$set(echo = TRUE)
+
+# Set repo
+local({r &lt;- getOption(&quot;repos&quot;)
+      r[&quot;CRAN&quot;] &lt;- &quot;http://cran.rstudio.com/&quot;
+      options(repos=r)})
+
+# ipak function: install and load multiple R packages.
+# check to see if the packages are installed. Install them if the are not, then load them into the R session.
+
+ipak &lt;- function(pkg){
+    new.pkg &lt;- pkg[!(pkg %in% installed.packages()[, &quot;Package&quot;])]
+    if (length(new.pkg))
+        install.packages(new.pkg, dependencies = TRUE)
+    sapply(pkg, require, character.only = TRUE)
+}
+
+# usage
+packages &lt;- c(&quot;tidyr&quot;, &quot;dplyr&quot;, &quot;ggplot2&quot;, &quot;knitr&quot;, &quot;rmarkdown&quot;, &quot;DBI&quot;, &quot;tinytex&quot;, &quot;devtools&quot;)
+ipak(packages)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDRcbiJ9 -->
-<pre><code>[1] 4</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWVhbihjKDEsMiwzLDQsNSkpXG5gYGAifQ== -->
-<pre class="r"><code>mean(c(1,2,3,4,5))</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDNcbiJ9 -->
-<pre><code>[1] 3</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiICAgIHRpZHlyICAgICBkcGx5ciAgIGdncGxvdDIgICAgIGtuaXRyIHJtYXJrZG93biAgICAgICBEQkkgICB0aW55dGV4ICBkZXZ0b29scyBcbiAgICAgVFJVRSAgICAgIFRSVUUgICAgICBUUlVFICAgICAgVFJVRSAgICAgIFRSVUUgICAgICBUUlVFICAgICAgVFJVRSAgICAgIFRSVUUgXG4ifQ== -->
+<pre><code>    tidyr     dplyr   ggplot2     knitr rmarkdown       DBI   tinytex  devtools 
+     TRUE      TRUE      TRUE      TRUE      TRUE      TRUE      TRUE      TRUE </code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>Here is an example of an un-ordered list:</p>
+<div id="this-is-a-level-1-header" class="section level1">
+<h1>This is a level 1 header</h1>
+<div id="r-markdown" class="section level2">
+<h2>R Markdown</h2>
+<div id="this-is-a-level-3-header" class="section level3">
+<h3>This is a level 3 header</h3>
+<p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com" class="uri">http://rmarkdown.rstudio.com</a>.</p>
+<p>Here is a link to <a href="https://www.google.com/">GOOGLE</a></p>
+<p>Here is a word in <strong>bold</strong> and another word in <strong>bold</strong>.</p>
+<p>Here is a word in <em>italics</em> and another word in <em>italics</em>.</p>
+<p>When we compile our document, we are using the <code>rmarkdown</code> package.</p>
+<p>Here are some example R commands:</p>
+<pre><code>2+2
+mean(c(1,2,3,4,5))</code></pre>
+<p>Here is an example of a non-numbered list:</p>
 <ul>
-<li>Breakfast
+<li><p>Breakfast</p>
 <ul>
-<li>food
+<li><p>food</p>
 <ul>
 <li>eggs</li>
 <li>toast</li>
 <li>bacon</li>
 </ul></li>
-<li>drink
+<li><p>drink</p>
 <ul>
 <li>apple juice</li>
 </ul></li>
 </ul></li>
-<li>Lunch
+<li><p>Lunch</p>
 <ul>
 <li>taco</li>
 </ul></li>
-<li>Dinner
+<li><p>Dinner</p>
 <ul>
 <li>baked chicken</li>
 <li>broccoli</li>
 <li>rice</li>
 </ul></li>
 </ul>
-<p>Here is an example of an ordered list:</p>
+<p>Here is an example of a numbered list:</p>
 <ol style="list-style-type: decimal">
-<li>Breakfast</li>
-</ol>
+<li><p>Breakfast</p>
 <ol style="list-style-type: lower-alpha">
-<li>food i. eggs ii. toast iii. bacon</li>
-<li>drink i. apple juice</li>
-</ol>
-<ol start="2" style="list-style-type: decimal">
-<li>Lunch</li>
-</ol>
+<li><p>food</p>
+<ol style="list-style-type: lower-roman">
+<li>eggs</li>
+<li>toast</li>
+<li>bacon</li>
+</ol></li>
+<li><p>drink</p>
+<ol style="list-style-type: lower-roman">
+<li>apple juice</li>
+</ol></li>
+</ol></li>
+<li><p>Lunch</p>
 <ol style="list-style-type: lower-alpha">
 <li>taco</li>
-</ol>
-<ol start="3" style="list-style-type: decimal">
-<li>Dinner</li>
-</ol>
+</ol></li>
+<li><p>Dinner</p>
 <ol style="list-style-type: lower-alpha">
 <li>baked chicken</li>
 <li>broccoli</li>
 <li>rice</li>
-</ol>
-<ol style="list-style-type: decimal">
-<li>Dog
-<ol style="list-style-type: decimal">
-<li>German Shepherd</li>
-<li>Belgian Shepherd
-<ol style="list-style-type: decimal">
-<li>Malinois</li>
-<li>Groenendael</li>
-<li>Tervuren</li>
-</ol></li>
-</ol></li>
-<li>Cat
-<ol style="list-style-type: lower-alpha">
-<li>Siberian</li>
-<li>Siamese</li>
-<li>Peruvian-Siamese</li>
-</ol>
-<ol start="2" style="list-style-type: lower-roman">
-<li>Himalayan Siamese</li>
 </ol></li>
 </ol>
-<p>Here is an example of block quote:</p>
+<p>Here is an example of a blockquote:</p>
 <blockquote>
-<p>This is a block quote. This paragraph has two lines</p>
+<p>This is a block quote. This paragraph has two lines.</p>
 <ol style="list-style-type: decimal">
-<li>This is a list inside a block quote</li>
+<li>This is a list inside a block quote.</li>
 <li>Second item.</li>
 </ol>
 </blockquote>
-<p>Here is an example of a nested block qupte:</p>
+<p>Here is an example of a nested blockquote:</p>
 <blockquote>
-<p>This is a block quote. This paragraph has two lines</p>
+<p>This is a block quote. This paragraph has two lines.</p>
 <blockquote>
 <p>This text is nested</p>
 </blockquote>
 </blockquote>
-</div>
-</div>
-<div id="r-markdown" class="section level2">
-<h2>R Markdown</h2>
-<p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com" class="uri">http://rmarkdown.rstudio.com</a>.</p>
+<p>Here is an example of code in a blockquote:</p>
+<blockquote>
+<pre><code>2+2
+mean(c(1,2,3,4,5))</code></pre>
+</blockquote>
 <p>When you click the <strong>Knit</strong> button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
@@ -357,6 +352,7 @@ mean(c(1,2,3,4,5))</code></pre>
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
+</div>
 <div id="including-plots" class="section level2">
 <h2>Including Plots</h2>
 <p>You can also embed plots, for example:</p>
@@ -369,10 +365,74 @@ mean(c(1,2,3,4,5))</code></pre>
 <!-- rnb-text-begin -->
 <p>Note that the <code>echo = FALSE</code> parameter was added to the code chunk to prevent printing of the R code that generated the plot.</p>
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-plot-begin eyJoZWlnaHQiOjUsIndpZHRoIjo1LCJzaXplX2JlaGF2aW9yIjoxLCJjb25kaXRpb25zIjpbXX0= -->
+<p><img src="data:image/png;base64,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" /></p>
+<!-- rnb-plot-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="insert-tables" class="section level2">
+<h2>Insert Tables</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxua25pdHI6OmthYmxlKGhlYWQoY2FycyksXG4gICAgICAgICAgICAgY2FwdGlvbiA9IFwiVG9wIDYgUm93cyBvZiBDYXJzIERhdGFzZXRcIilcbmBgYCJ9 -->
+<pre class="r"><code>knitr::kable(head(cars),
+             caption = &quot;Top 6 Rows of Cars Dataset&quot;)</code></pre>
+<!-- rnb-source-end -->
+
+<!-- rnb-html-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImtuaXRfYXNpcyJdLCJzaXppbmdQb2xpY3kiOltdfX0= -->
+
+<table>
+<caption>Top 6 Rows of Cars Dataset</caption>
+<thead>
+<tr class="header">
+<th align="right">speed</th>
+<th align="right">dist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">4</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">10</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="right">7</td>
+<td align="right">22</td>
+</tr>
+<tr class="odd">
+<td align="right">8</td>
+<td align="right">16</td>
+</tr>
+<tr class="even">
+<td align="right">9</td>
+<td align="right">10</td>
+</tr>
+</tbody>
+</table>
+
+
+<!-- rnb-html-end -->
+
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="insert-equation" class="section level2">
+<h2>Insert Equation</h2>
+<p><span class="math display">\[ Y = \beta_0 + \beta_1x \]</span></p>
+<!-- rnb-text-end -->
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIk1vZHVsZTItIFIgTWFya2Rvd24gRG9jdW1lbnQgMSINCmF1dGhvcjogIkRvbWluaWMgRmVzdGEiDQpkYXRlOiAiOC8yNS8yMDIxIg0Kb3V0cHV0Og0KICBodG1sX25vdGVib29rOiBkZWZhdWx0DQogIGh0bWxfZG9jdW1lbnQ6IGRlZmF1bHQNCiAgcGRmX2RvY3VtZW50OiBkZWZhdWx0DQogIHdvcmRfZG9jdW1lbnQ6IGRlZmF1bHQNCi0tLQ0KDQpgYGB7ciBzZXR1cCwgaW5jbHVkZT1GQUxTRX0NCmtuaXRyOjpvcHRzX2NodW5rJHNldChlY2hvID0gVFJVRSkNCmBgYA0KYGBge3IgaW5jbHVkZT1GQUxTRX0NCiMgU2V0IHJlcG8NCmxvY2FsKHtyIDwtIGdldE9wdGlvbigicmVwb3MiKQ0KICAgICAgclsiQ1JBTiJdIDwtICJodHRwOi8vY3Jhbi5yc3R1ZGlvLmNvbS8iDQogICAgICBvcHRpb25zKHJlcG9zPXIpfSkNCmBgYA0KYGBge3IgaW5jbHVkZT1GQUxTRX0NCiMgaXBhayBmdW5jdGlvbjogaW5zdGFsbCBhbmQgbG9hZCBtdWx0aXBsZSBSIHBhY2thZ2VzLg0KIyBjaGVjayB0byBzZWUgaWYgdGhlIHBhY2thZ2VzIGFyZSBpbnN0YWxsZWQuIEluc3RhbGwgdGhlbSBpZiB0aGUgYXJlIG5vdCwgdGhlbiBsb2FkIHRoZW0gaW50byB0aGUgUiBzZXNzaW9uLg0KDQppcGFrIDwtIGZ1bmN0aW9uKHBrZyl7DQoJbmV3LnBrZyA8LSBwa2dbIShwa2cgJWluJSBpbnN0YWxsZWQucGFja2FnZXMoKVssICJQYWNrYWdlIl0pXQ0KCWlmIChsZW5ndGgobmV3LnBrZykpDQoJCWluc3RhbGwucGFja2FnZXMobmV3LnBrZywgZGVwZW5kZW5jaWVzID0gVFJVRSkNCglzYXBwbHkocGtnLCByZXF1aXJlLCBjaGFyYWN0ZXIub25seSA9IFRSVUUpDQp9DQoNCiMgdXNhZ2UNCnBhY2thZ2VzIDwtIGMoInRpZHlyIiwgImRwbHlyIiwgImdncGxvdDIiLCAia25pdHIiLCAicm1hcmtkb3duIiwgIkRCSSIsICJ0aW55dGV4IiwgImRldnRvb2xzIiwgImZhbmN5X2xpc3RzIikNCmlwYWsocGFja2FnZXMpDQpgYGANCg0KIyBUaGlzIGlzIGEgbGV2ZWwgMSBoZWFkZXINCg0KIyMgVGhpcyBpcyBhIGxldmVsIDIgaGVhZGVyDQoNCiMjIyBUaGlzIGlzIGEgbGV2ZWwgMyBoZWFkZXINCg0KW0hlcmUgaXMgYSBsaW5rIHRvIGdvb2dsZV0od3d3Lmdvb2dsZS5jb20pDQoNCioqSGVyZSBpcyBhIHdvcmQgaW4gYm9sZCoqDQoNCipIZXJlIGlzIGEgd29yZCBpbiBpdGFsaWNzKg0KDQpIZXJlIGlzIGBpbmxpbmUgY29kZWANCg0KSGVyZSBpcyBhbiBleGFtcGxlIG9mIGEgKmJveGVkKiBSIGNvbW1hbmQ6DQoNCmBgYA0KMisyDQptZWFuKGMoMSwyLDMsNCw1KSkNCmBgYA0KSGVyZSBpcyBhbiBleGFtcGxlIG9mIGFuICoqZXhlY3V0ZWQqKiBSIGNvbW1hbmQ6DQoNCmBgYHtyfQ0KMisyDQptZWFuKGMoMSwyLDMsNCw1KSkNCmBgYA0KDQpIZXJlIGlzIGFuIGV4YW1wbGUgb2YgYW4gdW4tb3JkZXJlZCBsaXN0Og0KDQoqIEJyZWFrZmFzdA0KICAtIGZvb2QNCiAgICArIGVnZ3MNCiAgICArIHRvYXN0DQogICAgKyBiYWNvbg0KICAtIGRyaW5rDQogICAgKyBhcHBsZSBqdWljZQ0KKiBMdW5jaA0KICAtIHRhY28NCiogRGlubmVyDQogIC0gYmFrZWQgY2hpY2tlbg0KICAtIGJyb2Njb2xpDQogIC0gcmljZQ0KDQpIZXJlIGlzIGFuIGV4YW1wbGUgb2YgYW4gb3JkZXJlZCBsaXN0Og0KDQoxLiBCcmVha2Zhc3QNCiAgYS4gZm9vZA0KICAgIGkuIGVnZ3MNCiAgICBpaS4gdG9hc3QNCiAgICBpaWkuIGJhY29uDQogIGIuIGRyaW5rDQogICAgaS4gYXBwbGUganVpY2UNCjIuIEx1bmNoDQogIGEuIHRhY28NCjMuIERpbm5lcg0KICBhLiBiYWtlZCBjaGlja2VuDQogIGIuIGJyb2Njb2xpDQogIGMuIHJpY2UNCg0KMS4gRG9nDQogICAgMS4gR2VybWFuIFNoZXBoZXJkDQogICAgMi4gQmVsZ2lhbiBTaGVwaGVyZA0KICAgICAgICAxLiBNYWxpbm9pcw0KICAgICAgICAyLiBHcm9lbmVuZGFlbA0KICAgICAgICAzLiBUZXJ2dXJlbg0KMi4gQ2F0DQogICAgYS4gU2liZXJpYW4NCiAgICBiLiBTaWFtZXNlDQogICAgICBpLiBQZXJ1dmlhbi1TaWFtZXNlDQogICAgICBpaS4gSGltYWxheWFuIFNpYW1lc2UNCg0KSGVyZSBpcyBhbiBleGFtcGxlIG9mIGJsb2NrIHF1b3RlOg0KDQo+IFRoaXMgaXMgYSBibG9jayBxdW90ZS4gVGhpcw0KPiBwYXJhZ3JhcGggaGFzIHR3byBsaW5lcw0KPiANCj4gMS4gVGhpcyBpcyBhIGxpc3QgaW5zaWRlIGEgYmxvY2sgcXVvdGUNCj4gMi4gU2Vjb25kIGl0ZW0uDQoNCkhlcmUgaXMgYW4gZXhhbXBsZSBvZiBhIG5lc3RlZCBibG9jayBxdXB0ZToNCg0KPiBUaGlzIGlzIGEgYmxvY2sgcXVvdGUuIFRoaXMNCj4gcGFyYWdyYXBoIGhhcyB0d28gbGluZXMNCj4gDQo+ID4gVGhpcyB0ZXh0IGlzIG5lc3RlZA0KDQojIyBSIE1hcmtkb3duDQoNClRoaXMgaXMgYW4gUiBNYXJrZG93biBkb2N1bWVudC4gTWFya2Rvd24gaXMgYSBzaW1wbGUgZm9ybWF0dGluZyBzeW50YXggZm9yIGF1dGhvcmluZyBIVE1MLCBQREYsIGFuZCBNUyBXb3JkIGRvY3VtZW50cy4gRm9yIG1vcmUgZGV0YWlscyBvbiB1c2luZyBSIE1hcmtkb3duIHNlZSA8aHR0cDovL3JtYXJrZG93bi5yc3R1ZGlvLmNvbT4uDQoNCldoZW4geW91IGNsaWNrIHRoZSAqKktuaXQqKiBidXR0b24gYSBkb2N1bWVudCB3aWxsIGJlIGdlbmVyYXRlZCB0aGF0IGluY2x1ZGVzIGJvdGggY29udGVudCBhcyB3ZWxsIGFzIHRoZSBvdXRwdXQgb2YgYW55IGVtYmVkZGVkIFIgY29kZSBjaHVua3Mgd2l0aGluIHRoZSBkb2N1bWVudC4gWW91IGNhbiBlbWJlZCBhbiBSIGNvZGUgY2h1bmsgbGlrZSB0aGlzOg0KDQpgYGB7ciBjYXJzfQ0Kc3VtbWFyeShjYXJzKQ0KYGBgDQoNCiMjIEluY2x1ZGluZyBQbG90cw0KDQpZb3UgY2FuIGFsc28gZW1iZWQgcGxvdHMsIGZvciBleGFtcGxlOg0KDQpgYGB7ciBwcmVzc3VyZSwgZWNobz1GQUxTRX0NCnBsb3QocHJlc3N1cmUpDQpgYGANCg0KTm90ZSB0aGF0IHRoZSBgZWNobyA9IEZBTFNFYCBwYXJhbWV0ZXIgd2FzIGFkZGVkIHRvIHRoZSBjb2RlIGNodW5rIHRvIHByZXZlbnQgcHJpbnRpbmcgb2YgdGhlIFIgY29kZSB0aGF0IGdlbmVyYXRlZCB0aGUgcGxvdC4NCg==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIk1vZHVsZTItIFIgTWFya2Rvd24gRG9jdW1lbnQgMSINCmF1dGhvcjogIkRvbWluaWMgRmVzdGEiDQpkYXRlOiAiOC8yNS8yMDIxIg0Kb3V0cHV0Og0KICB3b3JkX2RvY3VtZW50OiBkZWZhdWx0DQogIGh0bWxfZG9jdW1lbnQ6IGRlZmF1bHQNCiAgaHRtbF9ub3RlYm9vazogZGVmYXVsdA0KICBwZGZfZG9jdW1lbnQ6IGRlZmF1bHQNCi0tLQ0KDQpgYGB7ciBzZXR1cCwgaW5jbHVkZT1UUlVFfQ0Ka25pdHI6Om9wdHNfY2h1bmskc2V0KGVjaG8gPSBUUlVFKQ0KDQojIFNldCByZXBvDQpsb2NhbCh7ciA8LSBnZXRPcHRpb24oInJlcG9zIikNCiAgICAgIHJbIkNSQU4iXSA8LSAiaHR0cDovL2NyYW4ucnN0dWRpby5jb20vIg0KICAgICAgb3B0aW9ucyhyZXBvcz1yKX0pDQoNCiMgaXBhayBmdW5jdGlvbjogaW5zdGFsbCBhbmQgbG9hZCBtdWx0aXBsZSBSIHBhY2thZ2VzLg0KIyBjaGVjayB0byBzZWUgaWYgdGhlIHBhY2thZ2VzIGFyZSBpbnN0YWxsZWQuIEluc3RhbGwgdGhlbSBpZiB0aGUgYXJlIG5vdCwgdGhlbiBsb2FkIHRoZW0gaW50byB0aGUgUiBzZXNzaW9uLg0KDQppcGFrIDwtIGZ1bmN0aW9uKHBrZyl7DQoJbmV3LnBrZyA8LSBwa2dbIShwa2cgJWluJSBpbnN0YWxsZWQucGFja2FnZXMoKVssICJQYWNrYWdlIl0pXQ0KCWlmIChsZW5ndGgobmV3LnBrZykpDQoJCWluc3RhbGwucGFja2FnZXMobmV3LnBrZywgZGVwZW5kZW5jaWVzID0gVFJVRSkNCglzYXBwbHkocGtnLCByZXF1aXJlLCBjaGFyYWN0ZXIub25seSA9IFRSVUUpDQp9DQoNCiMgdXNhZ2UNCnBhY2thZ2VzIDwtIGMoInRpZHlyIiwgImRwbHlyIiwgImdncGxvdDIiLCAia25pdHIiLCAicm1hcmtkb3duIiwgIkRCSSIsICJ0aW55dGV4IiwgImRldnRvb2xzIikNCmlwYWsocGFja2FnZXMpDQpgYGANCg0KIyBUaGlzIGlzIGEgbGV2ZWwgMSBoZWFkZXINCg0KIyMgUiBNYXJrZG93bg0KDQojIyMgVGhpcyBpcyBhIGxldmVsIDMgaGVhZGVyDQoNClRoaXMgaXMgYW4gUiBNYXJrZG93biBkb2N1bWVudC4gTWFya2Rvd24gaXMgYSBzaW1wbGUgZm9ybWF0dGluZyBzeW50YXggZm9yIGF1dGhvcmluZyBIVE1MLCBQREYsIGFuZCBNUyBXb3JkIGRvY3VtZW50cy4gRm9yIG1vcmUgZGV0YWlscyBvbiB1c2luZyBSIE1hcmtkb3duIHNlZSA8aHR0cDovL3JtYXJrZG93bi5yc3R1ZGlvLmNvbT4uDQoNCkhlcmUgaXMgYSBsaW5rIHRvIFtHT09HTEVdKGh0dHBzOi8vd3d3Lmdvb2dsZS5jb20vKQ0KDQpIZXJlIGlzIGEgd29yZCBpbiAqKmJvbGQqKiBhbmQgYW5vdGhlciB3b3JkIGluICoqYm9sZCoqLg0KDQpIZXJlIGlzIGEgd29yZCBpbiAqaXRhbGljcyogYW5kIGFub3RoZXIgd29yZCBpbiAqaXRhbGljcyouDQoNCldoZW4gd2UgY29tcGlsZSBvdXIgZG9jdW1lbnQsIHdlIGFyZSB1c2luZyB0aGUgYHJtYXJrZG93bmAgcGFja2FnZS4NCg0KSGVyZSBhcmUgc29tZSBleGFtcGxlIFIgY29tbWFuZHM6DQoNCiAgICAyKzINCiAgICBtZWFuKGMoMSwyLDMsNCw1KSkNCg0KSGVyZSBpcyBhbiBleGFtcGxlIG9mIGEgbm9uLW51bWJlcmVkIGxpc3Q6DQoNCi0gICBCcmVha2Zhc3QNCg0KICAgIC0gICBmb29kDQoNCiAgICAgICAgLSAgIGVnZ3MNCiAgICAgICAgLSAgIHRvYXN0DQogICAgICAgIC0gICBiYWNvbg0KDQogICAgLSAgIGRyaW5rDQoNCiAgICAgICAgLSAgIGFwcGxlIGp1aWNlDQoNCi0gICBMdW5jaA0KDQogICAgLSAgIHRhY28NCg0KLSAgIERpbm5lcg0KDQogICAgLSAgIGJha2VkIGNoaWNrZW4NCiAgICAtICAgYnJvY2NvbGkNCiAgICAtICAgcmljZQ0KDQpIZXJlIGlzIGFuIGV4YW1wbGUgb2YgYSBudW1iZXJlZCBsaXN0Og0KDQoxLiAgQnJlYWtmYXN0DQoNCiAgICBhLiAgZm9vZA0KDQogICAgICAgIGkuICBlZ2dzDQogICAgICAgIGlpLiB0b2FzdA0KICAgICAgICBpaWkuIGJhY29uDQoNCiAgICBiLiAgZHJpbmsNCg0KICAgICAgICBpLiAgYXBwbGUganVpY2UNCg0KMi4gIEx1bmNoDQoNCiAgICBhLiAgdGFjbw0KDQozLiAgRGlubmVyDQoNCiAgICBhLiAgYmFrZWQgY2hpY2tlbg0KICAgIGIuICBicm9jY29saQ0KICAgIGMuICByaWNlDQoNCkhlcmUgaXMgYW4gZXhhbXBsZSBvZiBhIGJsb2NrcXVvdGU6DQoNCj4gVGhpcyBpcyBhIGJsb2NrIHF1b3RlLiBUaGlzIHBhcmFncmFwaCBoYXMgdHdvIGxpbmVzLg0KPg0KPiAxLiAgVGhpcyBpcyBhIGxpc3QgaW5zaWRlIGEgYmxvY2sgcXVvdGUuDQo+IDIuICBTZWNvbmQgaXRlbS4NCg0KSGVyZSBpcyBhbiBleGFtcGxlIG9mIGEgbmVzdGVkIGJsb2NrcXVvdGU6DQoNCj4gVGhpcyBpcyBhIGJsb2NrIHF1b3RlLiBUaGlzIHBhcmFncmFwaCBoYXMgdHdvIGxpbmVzLg0KPg0KPiA+IFRoaXMgdGV4dCBpcyBuZXN0ZWQNCg0KSGVyZSBpcyBhbiBleGFtcGxlIG9mIGNvZGUgaW4gYSBibG9ja3F1b3RlOg0KDQo+ICAgICAyKzINCj4gICAgIG1lYW4oYygxLDIsMyw0LDUpKQ0KDQpXaGVuIHlvdSBjbGljayB0aGUgKipLbml0KiogYnV0dG9uIGEgZG9jdW1lbnQgd2lsbCBiZSBnZW5lcmF0ZWQgdGhhdCBpbmNsdWRlcyBib3RoIGNvbnRlbnQgYXMgd2VsbCBhcyB0aGUgb3V0cHV0IG9mIGFueSBlbWJlZGRlZCBSIGNvZGUgY2h1bmtzIHdpdGhpbiB0aGUgZG9jdW1lbnQuIFlvdSBjYW4gZW1iZWQgYW4gUiBjb2RlIGNodW5rIGxpa2UgdGhpczoNCg0KYGBge3IgY2Fyc30NCnN1bW1hcnkoY2FycykNCmBgYA0KDQojIyBJbmNsdWRpbmcgUGxvdHMNCg0KWW91IGNhbiBhbHNvIGVtYmVkIHBsb3RzLCBmb3IgZXhhbXBsZToNCg0KYGBge3IgcHJlc3N1cmUsIGVjaG89RkFMU0V9DQpwbG90KHByZXNzdXJlKQ0KYGBgDQoNCk5vdGUgdGhhdCB0aGUgYGVjaG8gPSBGQUxTRWAgcGFyYW1ldGVyIHdhcyBhZGRlZCB0byB0aGUgY29kZSBjaHVuayB0byBwcmV2ZW50IHByaW50aW5nIG9mIHRoZSBSIGNvZGUgdGhhdCBnZW5lcmF0ZWQgdGhlIHBsb3QuDQoNCmBgYHtyIHByZXNzdXJlMiwgZmlnLndpZHRoPTUsIGZpZy5oZWlnaHQ9NSwgZWNobz1GQUxTRX0NCnBsb3QocHJlc3N1cmUpDQpgYGANCg0KIyMgSW5zZXJ0IFRhYmxlcw0KDQpgYGB7cn0NCmtuaXRyOjprYWJsZShoZWFkKGNhcnMpLA0KICAgICAgICAgICAgIGNhcHRpb24gPSAiVG9wIDYgUm93cyBvZiBDYXJzIERhdGFzZXQiKQ0KYGBgDQoNCiMjIEluc2VydCBFcXVhdGlvbg0KDQokJCBZID0gXGJldGFfMCArIFxiZXRhXzF4ICQkDQo=</div>
 
 
 
